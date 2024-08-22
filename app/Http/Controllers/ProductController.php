@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -33,8 +35,10 @@ class ProductController extends Controller
             'product_name' => 'required|max:255',
             'product_description' => 'required',
             'product_price' => 'required',
+            'category_id' => 'required|exists:categories,id',
         ]);
         Product::create($request->all());
+
         return redirect()->route('products.index')
             ->with('success', 'Product created successfully.');
     }

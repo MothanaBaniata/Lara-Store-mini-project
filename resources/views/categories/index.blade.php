@@ -21,8 +21,8 @@
       </a>
       <div class="card-body d-flex flex-column justify-content-between" style="height: calc(100% - 200px);">
         <div>
-          <h5 class="card-title">{{ $category->category_name }}</h5>
-          <p class="card-text">{{ \Illuminate\Support\Str::limit($category->category_description, 80) }}</p>
+          <h5 class="card-title">{{ $category->name }}</h5>
+          <p class="card-text">{{ \Illuminate\Support\Str::limit($category->description, 80) }}</p>
         </div>
         <div>
           <a href="{{ route('categories.show', $category->id) }}" class="btn btn-info btn-sm">View</a>

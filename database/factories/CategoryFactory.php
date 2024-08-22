@@ -13,8 +13,8 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_name' => $this->faker->word,
-            'category_description' => $this->faker->sentence,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
         ];
     }
 }

@@ -17,13 +17,13 @@
       <form action="{{ route('categories.store') }}" method="POST">
         @csrf
         <div class="form-group">
-          <label for="category_name">Category Name</label>
-          <input type="text" id="category_name" name="category_name" class="form-control form-control-sm" value="{{ old('category_name') }}" required>
+          <label for="name">Category Name</label>
+          <input type="text" id="name" name="name" class="form-control form-control-sm" value="{{ old('name') }}" required>
         </div>
 
         <div class="form-group">
-          <label for="category_description">Category Description</label>
-          <textarea id="category_description" name="category_description" class="form-control form-control-sm" rows="4" required>{{ old('category_description') }}</textarea>
+          <label for="description">Category Description</label>
+          <textarea id="description" name="description" class="form-control form-control-sm" rows="4" required>{{ old('description') }}</textarea>
         </div>
 
         <div class="form-group">

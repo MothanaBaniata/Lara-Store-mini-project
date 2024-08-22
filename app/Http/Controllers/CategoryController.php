@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -30,8 +31,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|max:255',
-            'category_description' => 'required',
+            'name' => 'required|max:255',
+            'description' => 'required',
         ]);
         Category::create($request->all());
         return redirect()->route('categories.index')
@@ -43,8 +44,10 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        $category = Category::find($id);
-        return view('categories.show', compact('category'));
+        $category = Category::findOrFail($id);
+        $products = Product::where('category_id', $id)->get();
+
+        return view('categories.show', compact('category', 'products'));
     }
 
     /**
@@ -62,8 +65,8 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'category_name' => 'required|max:255',
-            'category_description' => 'required',
+            'name' => 'required|max:255',
+            'description' => 'required',
         ]);
         $category = Category::find($id);
         $category->update($request->all());
@@ -76,7 +79,10 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
+        if ($category->products()->count() > 0) {
+            $category->products()->delete();
+        }
         $category->delete();
         return redirect()->route('categories.index')
             ->with('success', 'Category deleted successfully');

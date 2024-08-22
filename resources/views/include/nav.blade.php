@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background: linear-gradient(90deg, #a52a2a, #800000);">
-  <a class="navbar-brand" href="{{ route('products.index') }}" style="font-family: 'Georgia', serif; font-size: 1.5rem; font-weight: bold; color: #fff;">
+  <a class="navbar-brand" href="{{ route('categories.index') }}" style="font-family: 'Georgia', serif; font-size: 1.5rem; font-weight: bold; color: #fff;">
     Lara Store
   </a>
   <div class="collapse navbar-collapse">
